@@ -2033,10 +2033,10 @@ int main(int argc, char *argv[])
 	if (dev < 0)
 		return 1;
 	
-	v4l2ResetControl (dev, V4L2_CID_BRIGHTNESS);
-  	v4l2ResetControl (dev, V4L2_CID_CONTRAST);
-  	v4l2ResetControl (dev, V4L2_CID_SATURATION);
-  	v4l2ResetControl (dev, V4L2_CID_GAIN);
+	// v4l2ResetControl (dev, V4L2_CID_BRIGHTNESS);
+  	// v4l2ResetControl (dev, V4L2_CID_CONTRAST);
+  	// v4l2ResetControl (dev, V4L2_CID_SATURATION);
+  	// v4l2ResetControl (dev, V4L2_CID_GAIN);
 
 	// RERVISION XU Ctrl ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
