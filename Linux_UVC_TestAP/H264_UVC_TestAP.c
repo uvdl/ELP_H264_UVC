@@ -143,8 +143,8 @@ static int CheckKernelVersion(void)
 	else
 	{
 		TestAp_Printf(TESTAP_DBG_ERR, "your kernel version: 0x%x \nTestAP support kernel version: 0x%x\n",kernelRelease, LINUX_VERSION_CODE);
-		return false;
 	}
+	return true;
 
 }
 static int GetFreeRam(int* freeram)
@@ -1858,6 +1858,7 @@ int main(int argc, char *argv[])
 			break;
 
 		case OPT_H264_IFRAME_SET:
+			TestAp_Printf(TESTAP_DBG_ERR, "IFrame chosen\n");
 			h264_iframe_reset = atoi(optarg);
 			do_h264_iframe_set = 1;
 			break;
@@ -2032,10 +2033,10 @@ int main(int argc, char *argv[])
 	if (dev < 0)
 		return 1;
 	
-	v4l2ResetControl (dev, V4L2_CID_BRIGHTNESS);
-  	v4l2ResetControl (dev, V4L2_CID_CONTRAST);
-  	v4l2ResetControl (dev, V4L2_CID_SATURATION);
-  	v4l2ResetControl (dev, V4L2_CID_GAIN);
+	// v4l2ResetControl (dev, V4L2_CID_BRIGHTNESS);
+  	// v4l2ResetControl (dev, V4L2_CID_CONTRAST);
+  	// v4l2ResetControl (dev, V4L2_CID_SATURATION);
+  	// v4l2ResetControl (dev, V4L2_CID_GAIN);
 
 	// RERVISION XU Ctrl ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -2119,6 +2120,11 @@ int main(int argc, char *argv[])
 	{
 		if(XU_H264_Set_BitRate(dev, m_BitRate) < 0 )
 			TestAp_Printf(TESTAP_DBG_ERR, "RERVISION_UVC_TestAP @main : XU_H264_Set_BitRate Failed\n");
+	}
+
+	if(do_h264_iframe_set)
+	{
+		XU_H264_Set_IFRAME(dev);
 	}
 
 	if(do_xu_set)
